@@ -2,6 +2,10 @@ import Head from "next/head";
 import Link from "../src/components/Link";
 import Footer from "../src/components/patterns/Footer";
 import PageTitle from "../src/components/PageTitle";
+// faq.js
+import FAQScreen from '../src/screens/FAQScreen/index';
+
+export default FAQScreen; 
 
 // SSG - Static Site Generation
 // SSR - Server Side Rendering 
@@ -21,28 +25,4 @@ export async function getStaticProps() {
     }
 }
 
-export default function FaqPage({ faq }) {
 
-    return (
-        <>
-            <div>
-                <Head>
-                    <PageTitle>FAQ - Alura Cases Campanha</PageTitle>
-                </Head>
-                <h1>Alura Cases - FAQ</h1>
-                <Link href="/">
-                    Ir para o Home
-                </Link>
-                <ul>
-                    {faq.length > 0 && faq.map(({ question, answer }, _index) => (
-                        <li key={_index}>
-                            <h2>{question}</h2>
-                            <p>{answer}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <Footer />
-        </>
-    )
-}

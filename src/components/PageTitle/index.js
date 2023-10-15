@@ -1,8 +1,8 @@
-import Head from "next/link"
+import Head from "next/head"
 
 export default function PageTitle({children}) {
     return (
-        <Head href={href} passHref>
+        <Head>
             <title>{children}</title>
         </Head>
     )
