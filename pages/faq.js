@@ -5,7 +5,7 @@ import PageTitle from "../src/components/PageTitle";
 // faq.js
 import FAQScreen from '../src/screens/FAQScreen/index';
 
-export default FAQScreen; 
+export default FAQScreen;
 
 // SSG - Static Site Generation
 // SSR - Server Side Rendering 
