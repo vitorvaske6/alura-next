@@ -7,7 +7,7 @@ import { isEmpty } from '../../src/lib/CustomFunctions';
 
 export async function getServerSideProps() {
     const dadosDaAPI = await fetch(`https://fakeapi-omariosouto.vercel.app/api/posts`).then((res) => res.json())
-    console.log(dadosDaAPI.posts[0])
+
     return {
         props: { posts: dadosDaAPI.posts },
     };
@@ -20,12 +20,11 @@ export default function Profile(props) {
         githubUser: 'vitorvaske6',
     }
     const query = router.query
-    console.log(query)
+
     const posts = isEmpty(query) ? props.posts : props.posts.filter(
         (post, _) => post.date === router.query.date
     )
  
-    
     const [postsPage, setPostsPage] = useState({ start: 0, end: 4 })
     const [pagesFilter, setPagesFilter] = useState({ start: 0, end: 9 })
     const [pages, setPages] = useState(Array.from({ length: parseInt(posts.length / 5) }, (_, i) => i + 1))
@@ -50,9 +49,8 @@ export default function Profile(props) {
     }
 
     function handlePagePosts(page) {
-        setPostsPage(prev => ({start: (page*5)-5, end: (page*5)-1 }))
+        setPostsPage({start: (page*5)-5, end: (page*5)-1 })
     }
-    console.log(pages, filteredPosts)
 
     return (
         <Box

@@ -1,6 +1,11 @@
+import dynamic from 'next/dynamic';
 import Link from '../../../../src/components/Link'
-import { Box, Text } from '../../../../src/theme/components';
+import { Box, Button, Text } from '../../../../src/theme/components';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+// só carrega o componente quando é exibido na página
+const YoutubeVideo = dynamic(() => import('../../../../src/components/DynamicVideo'))
 
 // dica dos paths estáticos
 export async function getStaticPaths() {
@@ -16,7 +21,7 @@ export async function getStaticPaths() {
         // 'blocking' -> static incremental - generation ao gerar a página, a mantém em cache para a próxima requisição
         // false -> dynamic generation - sempre gera a página depois do build
         // true -> static generation - sempre gera a página no build
-        fallback: 'blocking' 
+        fallback: 'blocking'
     };
 }
 
@@ -25,8 +30,6 @@ export async function getStaticProps(context) {
     const dadosDaAPI = await fetch(`https://fakeapi-omariosouto.vercel.app/api/posts/${id}`).then((res) => res.json())
 
     const post = dadosDaAPI
-    
-    console.log(post)
 
     return {
         props: {
@@ -43,6 +46,7 @@ export async function getStaticProps(context) {
 
 export default function PostByIdScreen(props) {
     const router = useRouter();
+    const [showVideo, setShowVideo] = useState(false)
     // console.log(router);
     const post = {
         title: props.title,
@@ -70,12 +74,11 @@ export default function PostByIdScreen(props) {
                 tag="h1"
                 styleSheet={{ color: '#F9703E', justifyContent: 'center', lineHeight: '1.2' }}
             >
-                {post.title}
+                {post.title}&nbsp;-&nbsp;
             </Text>
             <Text styleSheet={{ color: '#F9703E', justifyContent: 'center', borderBottom: '1px solid #F9703E', paddingVertical: '16px', marginVertical: '16px' }}>
                 {post.date}
             </Text>
-
             {/* Área de Conteudo */}
             <Box
                 styleSheet={{
@@ -86,10 +89,12 @@ export default function PostByIdScreen(props) {
                     {post.content}
                 </Text>
 
-                {post.video && <iframe style={{ marginTop: '32px', minHeight: '400px', width: '100%' }} src={post.video} />}
+                {post.video && showVideo && <YoutubeVideo style={{ marginTop: '32px', minHeight: '400px', width: '100%' }} src={post.video} />}
             </Box>
 
-
+            <Button onClick={() => setShowVideo(prev => !prev)}>
+                {!showVideo ? "Mostrar" : "Esconder"} Video
+            </Button>
             {/* Rodapé */}
             <Box
                 styleSheet={{
