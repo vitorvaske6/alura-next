@@ -113,8 +113,9 @@ export default function Profile(props) {
                     ...
                 </Text>
                 )}
-                {filteredPages.map((pageNum) => (
+                {filteredPages.map((pageNum, _pageNum) => (
                     <Text
+                        key={_pageNum}
                         variant="heading1"
                         tag="p"
                         styleSheet={{ color: '#F9703E', justifyContent: 'center', cursor: 'pointer' }}
