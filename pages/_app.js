@@ -1,13 +1,14 @@
 import Head from "next/head";
 import GlobalStyle from "../src/theme/GlobalStyle";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
     return (
         <>
             <Head>
                 {/* <!-- Google tag (gtag.js) --> */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-PS8BCB3TFX" />
-                <script dangerouslySetInnerHTML={{
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-PS8BCB3TFX" />
+                <Script dangerouslySetInnerHTML={{
                     __html: `
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
@@ -21,7 +22,7 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <GlobalStyle />
             <div style={{
-                marginTop: '70px'
+                // marginTop: '70px'
             }}>
                 <Component {...pageProps} />
             </div>

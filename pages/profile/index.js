@@ -3,7 +3,7 @@ import Link from '../../src/components/Link'
 import { Box, Text, Image } from '../../src/theme/components';
 import dados from './dados.json';
 import { useRouter } from 'next/router';
-import { isEmpty } from '../../src/lib/CustomFunctions';
+import { isEmpty } from '../../src/utils/CustomFunctions';
 
 export async function getServerSideProps() {
     const dadosDaAPI = await fetch(`https://fakeapi-omariosouto.vercel.app/api/posts`).then((res) => res.json())
