@@ -18,7 +18,6 @@ export const authService = {
         .then(async (res) =>{
             if(!res.ok) throw new Error(`Usuário ou senha inválida!`)
             const body = res.body
-            console.log(body)
             tokenService.save(body.data.access_token)
             return body
         })
@@ -55,5 +54,17 @@ export const authService = {
     },
     async decodeToken(token) {
         return await jwt.decode(token);
+    },
+    async getSession(ctx=null){
+        const token = tokenService.get(ctx)
+        return await HttpClient(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/session`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((res) => {
+            if(!res.ok) throw new Error(`Não autorizado`)
+            return res.body.data
+        })
     }
 }
