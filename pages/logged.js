@@ -5,13 +5,12 @@ export default LoggedScreen
 
 export async function getServerSideProps(context) {
     const cookies = nookies.get(context);
-    console.log('Cookies', cookies);
+
     const SENHA_SECRETA = '123456';
     const senhaInformadaPeloUsuario = cookies.SENHA_SECRETA;
     const isAutorizado = SENHA_SECRETA === senhaInformadaPeloUsuario;
 
     if (!isAutorizado) {
-        console.log('NÃO Autorizado!!!');
         return {
             redirect: {
                 permanent: false,
@@ -20,7 +19,6 @@ export async function getServerSideProps(context) {
         };
     }
 
-    console.log('Autorizado!!!');
     return {
         props: {}
     }

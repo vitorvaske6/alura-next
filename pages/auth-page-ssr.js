@@ -6,6 +6,9 @@ export default function AuthPageSsr(props) {
             <h1>
                 Auth Page SSR
             </h1>
+            <p>
+                <a href="/logout">Logout</a>
+            </p>
             <pre>
                 {JSON.stringify(props, null, 2)}
             </pre>

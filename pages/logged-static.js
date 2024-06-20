@@ -8,7 +8,7 @@ export function getStaticProps(ctx) {
     const cookies = nookies.get(ctx);
 
     // Cookies NÃO existem em build time
-    console.log('[static] Cookies', cookies);
+    // console.log('[static] Cookies', cookies);
 
     return {
         props: {},

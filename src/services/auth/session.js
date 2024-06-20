@@ -32,20 +32,20 @@ function useSession() {
 
     useEffect(() => {
         authService.getSession()
-        .then((session) => {
-            setSession(session)
-        })
-        .catch((err) =>{
-            setError(err)
-        })
-        .finally(() => {
-            setLoading(false)
-        })
+            .then((session) => {
+                setSession(session)
+            })
+            .catch((err) => {
+                setError(err)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [])
 
 
     return {
-        data: session,
+        data: { session },
         error,
         loading
     }
@@ -53,17 +53,17 @@ function useSession() {
 }
 // High Order Component
 export function withSessionHOC(Component) {
-    return function Wrapper(props){
+    return function Wrapper(props) {
         const session = useSession()
         const router = useRouter()
 
-        if(!session.loading && session.error){
+        if (!session.loading && session.error) {
             router.push('/401')
         }
 
         const _props = {
             ...props,
-            session: session.data
+            session: session.data.session
         }
 
         return (

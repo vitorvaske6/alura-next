@@ -13,7 +13,7 @@ export default function LoginScreen() {
 
     const [senha, setSenha] = React.useState('12345');
     const router = useRouter();
-    console.log('HomeScreen', values);
+
     return (
         <Box
             styleSheet={{

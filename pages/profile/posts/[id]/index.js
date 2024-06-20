@@ -47,7 +47,7 @@ export async function getStaticProps(context) {
 export default function PostByIdScreen(props) {
     const router = useRouter();
     const [showVideo, setShowVideo] = useState(false)
-    // console.log(router);
+
     const post = {
         title: props.title,
         date: props.date,

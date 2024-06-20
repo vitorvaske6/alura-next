@@ -97,10 +97,26 @@ function SideImage() {
 
 export default function HomeScreen() {
     return (
+
         <Box>
             <Head>
                 <PageTitle>Home - Alura Cases Campanha</PageTitle>
             </Head>
+            <div>
+                <div style={{
+                    display: 'flex',
+                    gap: '20px',
+                    placeItems: 'end'
+                }}>
+
+                    <p>
+                        <a href="/auth/login">Login</a>
+                    </p>
+                    {/* <p>
+                        <a href="/auth/Login">Login</a>
+                    </p> */}
+                </div>
+            </div>
             <Box
                 as="main"
                 styleSheet={{
